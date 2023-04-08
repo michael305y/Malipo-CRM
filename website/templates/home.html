@@ -1,14 +1,40 @@
-{% extends 'base.html' %} {% block content %}
+{% extends 'base.html' %} {% block content %} {% if user.is_authenticated %}
 
+<table
+  class="table table-success table-striped table-hover table-sm caption-top"
+>
+  <caption>
+    <strong>Employee Records</strong>
+  </caption>
+  <thead class="table-dark">
+    <tr>
+      <th scope="col">id</th>
+      <th scope="col">Name</th>
+      <th scope="col">KRA PIN</th>
+      <th scope="col">Account Number</th>
+      <th scope="col">Phone Number</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% if records %} {% for record in records %}
+    <tr>
+      <td><a href="{% url 'record' record.id %}"> {{record.id }}</a></td>
+      <td>{{ record.first_name }} {{ record.last_name }}</td>
+      <td>{{ record.KRA_PIN }}</td>
+      <td>{{record.Account_Number }}</td>
+      <td>{{ record.Phone_Number }}</td>
+    </tr>
+
+    {% endfor %} {%endif %}
+  </tbody>
+</table>
+
+{% else %}
 <div class="col-md-6 offset-md-3">
-  {% if user.is_authenticated %}
-  <h1>welcome</h1>
-  {% else %}
   <h1>Login</h1>
 
   <form method="POST" action="{% url 'home' %}">
     {% csrf_token %}
-    <!-- <br /> -->
     <div class="mb-3">
       <input
         type="text"
@@ -29,6 +55,6 @@
     </div>
     <button type="submit" class="btn btn-secondary">Login</button>
   </form>
-</div>
 
-{% endif %} {% endblock %}
+  {% endif %}{% endblock %}
+</div>

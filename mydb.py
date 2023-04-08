@@ -15,3 +15,4 @@ cursorObject = database.cursor()
 cursorObject. execute("CREATE DATABASE Malipo_db")
 
 print("DB created")
+

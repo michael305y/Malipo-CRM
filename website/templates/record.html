@@ -1,0 +1,41 @@
+{% extends 'base.html' %} {% block content %}
+
+<html>
+  <div class="card">
+    <h5 class="card-header">Employee Record Details</h5>
+    <div class="card-body">
+      <h5 class="card-title">Special title treatment</h5>
+      <p class="card-text">
+        {{employee_record.id }}
+        <br />
+        {{ employee_record.first_name }} {{ employee_record.last_name }}
+        <br />
+        {{employee_record.KRA_PIN }}
+        <br />
+        {{employee_record.Account_Number }}
+        <br />
+        {{employee_record.Phone_Number }}
+        <br />
+      </p>
+      <a href="{% url 'home' %}" class="btn btn-primary">Go Back</a>
+
+      <a
+        href="{% url 'delete_employee' employee_record.id %}"
+        class="btn btn-danger"
+        >Delete</a
+      >
+      <a
+        href="{% url 'update_record' employee_record.id %}"
+        class="btn btn-secondary"
+        >Update</a
+      >
+    </div>
+  </div>
+
+  <td>{{ record.first_name }} {{ record.last_name }}</td>
+  <td>{{ record.KRA_PIN }}</td>
+  <td>{{record.Account_Number }}</td>
+  <td>{{ record.Phone_Number }}</td>
+</html>
+
+{% endblock %}
